@@ -98,7 +98,7 @@ g++ -std=c++17 -o CommandCalculator main.cpp
 
 ## 👩‍💻 Author
 
-**Pravya Prasad**  
+**Biju**  
 Command-line minimalist. Backend enthusiast. Framework nerd.  
 This project is part of a broader exploration into systems-level programming and modern C++ tooling.
 
