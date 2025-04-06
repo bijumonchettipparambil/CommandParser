@@ -34,13 +34,14 @@ using namespace std;
  */
 
 // Constant definitions
-const short MAX_COMMANDS = 4;
+const short MAX_COMMANDS = 5;
 const short MAX_RETRIES = 3;
 const string ADD = "ADD";
 const string SUBTRACT = "SUBTRACT";
 const string MULTIPLY = "MULTIPLY";
 const string DIVIDE = "DIVIDE";
-const vector<string> VALID_COMMANDS = {ADD, SUBTRACT, MULTIPLY, DIVIDE};
+const string QUIT = "QUIT";
+const vector<string> VALID_COMMANDS = {ADD, SUBTRACT, MULTIPLY, DIVIDE, QUIT};
 
 // Error message constants
 const string INVALID_INPUT = "Invalid/Unrecognised input ";
@@ -77,11 +78,16 @@ int main(void){
         string input = promptAndGetInputFromUser();
          command = parseUserInput(input);
          if (!command.empty()){
-            cout << "<--------------------------------------------------------------------------------->" << endl;
-            cout << "The result of the \"" << command["0"] << "\" operation is: " << getResult(command) << endl;
-            cout << "<--------------------------------------------------------------------------------->" << endl;
-            cout << endl;
-            retryCount = 0;
+            if (stringToUpperCase(command["0"]) == QUIT){
+                return 0;
+            } else {
+                cout << endl;
+                cout << "===================================================================================" << endl;
+                cout << "The result of the \"" << command["0"] << "\" operation is: " << getResult(command) << endl;
+                cout << "===================================================================================" << endl;
+                cout << endl;
+                retryCount = 0;
+            }
          } else {
             retryCount++;
          }
@@ -107,8 +113,13 @@ string promptAndGetInputFromUser(void){
  * Show the command format and example to user
  */
 void showCommandFormatAndExample(void){
+    cout << "<--------------------------------------------------------------------------------->" << endl;
     cout << "Format of input is <command> <operand1> <operand2>" << endl;
     cout << "Example: add 100 50" << endl;
+    cout << "<--------------------------------------------------------------------------------->" << endl;
+    cout << "Enter \"Quit\", to exit!" << endl;
+    cout << "<--------------------------------------------------------------------------------->" << endl;
+    cout << endl;
 }
 
 /**
@@ -129,7 +140,7 @@ map<string, string> parseUserInput(string input){
         }
         editedInputWord = validateAndReturnParsedInput(wordFromInput, inputCount);
         if (editedInputWord != ""){
-            parsedUserInput.insert({to_string(inputCount), editedInputWord});
+            parsedUserInput.emplace(to_string(inputCount), editedInputWord);
         } else {
             showErrorMessage(wordFromInput, INVALID_INPUT);
             parsedUserInput.clear();    
