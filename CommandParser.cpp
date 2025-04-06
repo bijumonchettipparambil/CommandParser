@@ -219,11 +219,11 @@ bool isAValidNumber(string valueToCheck){
  */
 string getResult(map<string, string> command){
 
-    bool atLestOneInputIsFloat = isAFloatingPointNumber(command["1"]) || isAFloatingPointNumber(command["2"]);
+    bool atLeastOneInputIsFloat = isAFloatingPointNumber(command["1"]) || isAFloatingPointNumber(command["2"]);
     double firstNumber = stod(command["1"]);
     double secondNumber = stod(command["2"]);
     double result = performOperation(command["0"], firstNumber, secondNumber);
-    return atLestOneInputIsFloat? to_string(result) : to_string((int) result);
+    return atLeastOneInputIsFloat? to_string(result) : to_string((int) result);
 }
 
 /**
