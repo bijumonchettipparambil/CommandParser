@@ -43,7 +43,7 @@ Enter "Quit", to exit!
 Enter the command : divide 42 6
 
 ===================================================================================
-The result of the "divide" operation is: 7.000000
+The result of the "divide" operation is: 7
 ===================================================================================
 ```
 
