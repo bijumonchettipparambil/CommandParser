@@ -78,7 +78,7 @@ int main(void){
          command = parseUserInput(input);
          if (!command.empty()){
             cout << "<--------------------------------------------------------------------------------->" << endl;
-            cout << "The resut of the \"" << command["0"] << "\" operation is: " << getResult(command) << endl;
+            cout << "The result of the \"" << command["0"] << "\" operation is: " << getResult(command) << endl;
             cout << "<--------------------------------------------------------------------------------->" << endl;
             cout << endl;
             retryCount = 0;
@@ -208,11 +208,11 @@ bool isAValidNumber(string valueToCheck){
  */
 string getResult(map<string, string> command){
 
-    bool skipCastToInteger = isAFloatingPointNumber(command["1"]) || isAFloatingPointNumber(command["2"]);
+    bool atLestOneInputIsFloat = isAFloatingPointNumber(command["1"]) || isAFloatingPointNumber(command["2"]);
     double firstNumber = stod(command["1"]);
     double secondNumber = stod(command["2"]);
     double result = performOperation(command["0"], firstNumber, secondNumber);
-    return skipCastToInteger? to_string(result) : to_string((int) result);
+    return atLestOneInputIsFloat? to_string(result) : to_string((int) result);
 }
 
 /**
